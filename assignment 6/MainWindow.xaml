@@ -1,0 +1,78 @@
+﻿<Window x:Class="assignment_6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:assignment_6.ViewModels"
+        Title="MainWindow" Height="446" Width="709">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid HorizontalAlignment="Left" Height="396" Margin="10,10,0,0" VerticalAlignment="Top" Width="681">
+
+            <Grid Name="AirbusA380" Visibility="Hidden" HorizontalAlignment="Left" Height="265" Margin="10,10,0,0" VerticalAlignment="Top" Width="261" Background="#FFC77777">
+                <Button x:Name="btnAirbusSeat1" Content="1" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat2" Content="2" HorizontalAlignment="Left" Margin="59,52,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat3" Content="3" HorizontalAlignment="Left" Margin="158,52,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat4" Content="4" HorizontalAlignment="Left" Margin="207,52,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat5" Content="5" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat6" Content="6" HorizontalAlignment="Left" Margin="59,104,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat8" Content="8" HorizontalAlignment="Left" Margin="207,104,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat7" Content="7" HorizontalAlignment="Left" Margin="158,104,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat9" Content="9" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat10" Content="10" HorizontalAlignment="Left" Margin="59,156,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat12" Content="12" HorizontalAlignment="Left" Margin="207,156,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat11" Content="11" HorizontalAlignment="Left" Margin="158,156,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat13" Content="13" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat14" Content="14" HorizontalAlignment="Left" Margin="59,208,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat15" Content="15" HorizontalAlignment="Left" Margin="158,208,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Button x:Name="btnAirbusSeat16" Content="16" HorizontalAlignment="Left" Margin="207,208,0,0" VerticalAlignment="Top" Width="44" Height="47" Click="btnAirbusSeat_Click"/>
+                <Label Content="380" HorizontalAlignment="Left" Margin="106,10,0,0" VerticalAlignment="Top"/>
+            </Grid>
+            <GroupBox Header="Passenger Information" HorizontalAlignment="Left" Margin="357,10,0,0" VerticalAlignment="Top" Height="125" Width="314">
+                <Grid HorizontalAlignment="Left" Margin="10,0,-2,0" Width="294" Height="106" VerticalAlignment="Top">
+                    <Label Content="Choose Flight:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox Name="FlightCombo" ItemsSource="{Binding FlightCombo}" SelectedItem="{Binding SelectedFlight}" SelectionChanged="FlightCombo_SelectionChanged" HorizontalAlignment="Left" Margin="125,14,0,0" VerticalAlignment="Top" Width="159"/>
+                    <Label Content="Choose Passenger:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <ComboBox Name="PassengerCombo" ItemsSource="{Binding Path=AvailablePassengers}" SelectedItem="{Binding Path=SelectedPassenger}"  HorizontalAlignment="Left" Margin="125,45,0,0" VerticalAlignment="Top" Width="159" SelectionChanged="PassengerCombo_SelectionChanged" IsEnabled="{Binding Path=AreControlsEnabled}"/>
+                    <Label Content="Passenger Seat" HorizontalAlignment="Left" Margin="29,72,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtPassengerSeat" Text="{Binding Path=SelectedPassenger.SSeat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="125,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="37" IsEnabled="{Binding Path=AreControlsEnabled}"/>
+                </Grid>
+            </GroupBox>
+            <Button Content="Change Seat" Name="ChangeSeatButton" HorizontalAlignment="Left" Margin="526,154,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="2.72,1.773" Click="ChangeSeatButton_Click"/>
+            <Button Content="Add Passenger" Name="AddPassButton" HorizontalAlignment="Left" Margin="357,154,0,0" VerticalAlignment="Top" Width="132" Click="AddPassButton_Click" IsEnabled="{Binding Path=AreControlsEnabled}"/>
+            <Button Content="Delete Passenger" Name="DeletePassButton" HorizontalAlignment="Left" Margin="357,181,0,0" VerticalAlignment="Top" Width="132" Click="DeletePassButton_Click"/>
+            <GroupBox  Visibility="Visible" Header="Color Key" HorizontalAlignment="Left" Margin="357,208,0,0" VerticalAlignment="Top" Height="178" Width="301">
+                <Canvas HorizontalAlignment="Left" Height="156" Margin="10,0,-2,0" VerticalAlignment="Top" Width="281">
+                    <Label Canvas.Left="10" Canvas.Top="10" Background="Red" Width="40" Height="40"/>
+                    <Label Canvas.Left="10" Canvas.Top="55" Width="40" Height="40" Background="Blue"/>
+                    <Label  Canvas.Left="10" Canvas.Top="100" Background="Green" Width="40" Height="40"/>
+                    <Label Content="Seat is taken" Canvas.Left="68" Canvas.Top="10" Height="30"/>
+                    <Label Content="Seat is empty" Canvas.Left="64" Canvas.Top="55" Height="30"/>
+                    <Label Content="Selected Passenger Seat" Canvas.Left="64" Canvas.Top="100" Height="30"/>
+                </Canvas>
+            </GroupBox>
+            <Grid Name="Boeing767" Visibility="Hidden" HorizontalAlignment="Left" Height="366" Margin="10,10,0,0" VerticalAlignment="Top" Width="209" Background="#FF9D9DDA">
+                <Label Content="767" HorizontalAlignment="Left" Margin="79,10,0,0" VerticalAlignment="Top" Width="47"/>
+                <Button Content="1" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="2" HorizontalAlignment="Left" Margin="79,49,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="3" HorizontalAlignment="Left" Margin="152,49,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="4" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="5" HorizontalAlignment="Left" Margin="79,101,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="7" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="8" HorizontalAlignment="Left" Margin="79,153,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="10" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="11" HorizontalAlignment="Left" Margin="79,205,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="6" HorizontalAlignment="Left" Margin="152,101,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="9" HorizontalAlignment="Left" Margin="152,153,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="12" HorizontalAlignment="Left" Margin="152,205,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="13" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="14" HorizontalAlignment="Left" Margin="79,257,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="15" HorizontalAlignment="Left" Margin="152,257,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="16" HorizontalAlignment="Left" Margin="10,309,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="17" HorizontalAlignment="Left" Margin="79,309,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+                <Button Content="18" HorizontalAlignment="Left" Margin="152,309,0,0" VerticalAlignment="Top" Width="47" Height="47" Click="btnBoeingSeat_Click"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
